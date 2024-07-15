@@ -1,8 +1,32 @@
+<?php 
+
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+		$user_name = $_POST['user_name'];
+		$password = $_POST['password'];
+
+		
+	}
+
+
+    $query = "SELECT * from socios";
+    $result = mysqli_query($con, $query);
+    
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/listsocios.css">
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +41,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <title>Ejercicios</title>
+    <title>Clientes</title>
 </head>
 
 <body>
@@ -46,28 +70,32 @@
     </header>
 
     <!--Contenido pag-->
+    <div class="center">
+        <table class="tabla">
+            <tr class="rows">
+                <td class="center">Nombre</td>
+                <td>Apellido</td>
+                <td>Email</td>
+                <td>Pago</td>
+            </tr>
+            <tr>
+            <?php
+                while($row = mysqli_fetch_assoc($result))
+                {
+            ?>
+                <td><?php echo $row['socios_name']?></td>
+                <td><?php echo $row['socios_surname']?></td>
+                <td><?php echo $row['email']?></td>
+                <td><?php echo $row['pago']?></td>
 
+            </tr>
+            <?php
+                }
+            ?>
 
-    <section class="hero-section">
-        <div class="card-grid">
-            <a class="card" href="superior.html">
-                <div class="card__background" style="background-image: url(img/superior.jpg)">
-                </div>
-                <div class="card__content">
-                    <h3 class="card__heading">Tren Superior</h3>
-                </div>
-            </a>
-            <a class="card" href="inferior.html">
-                <div class="card__background" style="background-image: url(img/inferior.jpg)">
-                </div>
-                <div class="card__content">
-                    <h3 class="card__heading">Tren inferior</h3>
-                </div>
-            </a>
-        <div>
-    </section>
-
-
+        </table>
+    </div>
+    
     <!--Scripts-->
 
     <script src="js/nav.js"></script>

@@ -1,3 +1,14 @@
+<?php 
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+	$user_data = check_login($con);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +28,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <title>Ejercicios</title>
+    <title>Inicio</title>
 </head>
 
 <body>
@@ -38,7 +49,7 @@
                 <li><a href="login.php">Cuenta</a></li>
                 <li><a href="#clases">Rutinas</a></li>
                 <li><a href="#entrenadores">Entrenadores</a></li>
-                <li><a href="#contacto">Socios</a></li>
+                <li><a href="listsocios.php">Socios</a></li>
                 <li><a href="#contacto">Info</a></li>
                 <li><a href="logout.php">Cerrar sesion</a></li>
             </ul>
@@ -47,24 +58,39 @@
 
     <!--Contenido pag-->
 
-
+    <H1>Bienvenido <?php echo $user_data['user_name']; ?></H1>
     <section class="hero-section">
+        
         <div class="card-grid">
-            <a class="card" href="superior.html">
-                <div class="card__background" style="background-image: url(img/superior.jpg)">
+            <a class="card" href="ejercicios.html">
+                <div class="card__background" style="background-image: url(img/ejercicio.jpeg)">
                 </div>
                 <div class="card__content">
-                    <h3 class="card__heading">Tren Superior</h3>
+                    <h3 class="card__heading">Ejercicios</h3>
                 </div>
             </a>
-            <a class="card" href="inferior.html">
-                <div class="card__background" style="background-image: url(img/inferior.jpg)">
+            <a class="card" href="#">
+                <div class="card__background" style="background-image: url(img/istockphoto-538325934-612x612.jpg)">
                 </div>
                 <div class="card__content">
-                    <h3 class="card__heading">Tren inferior</h3>
+                    <h3 class="card__heading">Rutinas</h3>
                 </div>
             </a>
-        <div>
+            <a class="card" href="#">
+                <div class="card__background" style="background-image: url(img/entrenadores2.png)">
+                </div>
+                <div class="card__content">
+                    <h3 class="card__heading">Entrenadores</h3>
+                </div>
+                </li>
+                <a class="card" href="listsocios.php">
+                    <div class="card__background" style="background-image: url(img/socios.png)">
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__heading">Socios</h3>
+                    </div>
+                </a>
+                <div>
     </section>
 
 

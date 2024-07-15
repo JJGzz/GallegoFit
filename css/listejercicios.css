@@ -1,0 +1,300 @@
+body {
+    background: linear-gradient(to bottom right, #f9683c, #292c2f);
+    font-family: "Oswald", sans-serif;
+}
+
+html {
+    background: linear-gradient(to bottom right, #f9683c, #292c2f);
+}
+
+/*Texto titulo*/
+
+.titulo {
+    font-family: "Bebas Neue", sans-serif;
+}
+
+.titulo .naranja {
+    color: #f97e3c;
+}
+
+.logo a {
+    display: flex;
+    /* Disposición en línea de los hijos directos */
+    align-items: center;
+    /* Alinea los elementos verticalmente */
+    text-decoration: none;
+    /* Quita el subrayado del enlace */
+    color: inherit;
+    /* Mantiene el color del texto */
+}
+
+.logo a:hover {
+    transform: scale(1.1);
+    /* Aumenta el tamaño del enlace al 110% del tamaño original */
+    transition: transform 0.2s;
+    /* Agrega una transición suave para que el efecto sea gradual */
+}
+
+.imglogo {
+    width: 50px;
+    height: auto;
+}
+
+
+
+/*Navbar*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo h1 {
+    margin: 0;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 4px 0;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+
+.menu-toggle {
+    display: flex;
+}
+
+.nav-links {
+    z-index: 10;
+    /*Hace que la hamburguesa se despliegue por encima de todo*/
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #333;
+    flex-direction: column;
+    align-items: center;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+}
+
+.nav-links li {
+    margin: 20px 0;
+}
+
+.nav-links a {
+    font-size: 24px;
+}
+
+.nav-links.active {
+    height: calc(100vh - 60px);
+    /* Dejar espacio para el header */
+}
+
+
+.cuadrolist {
+    text-align: center;
+    padding-bottom: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #f9683c;
+    justify-content: center;
+}
+
+@media (min-width: 960px) {
+    .cuadrolist{
+        padding-top: 50px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+.cuadrolist a{
+    text-decoration: none;
+    color: #f9683c;
+    background-color: #333333;
+    
+}
+
+@media(max-width: 960px) {
+    .cuadrolist {
+      grid-template-columns: repeat(2, 2fr);
+      padding-top: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  
+    a {
+      width: 50%;
+      height: auto;
+    }
+  
+    a h3{
+      font-size: 25px;
+  
+    }
+
+    .card{
+        padding-right: 10px;
+    }
+  }
+
+/*cards*/
+
+
+:root {
+    --card-height: 300px;
+    --card-width: calc(var(--card-height) / 1.5);
+}
+
+@media(max-width: 1080px) {
+    :root{
+        --card-height: 200px;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+.card {
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 36px;
+    perspective: 2500px;
+    margin: 0 50px;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wrapper {
+    transition: all 0.5s;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+.card:hover .wrapper {
+    transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+.wrapper::before,
+.wrapper::after {
+    content: "";
+    opacity: 0;
+    width: 100%;
+    height: 80px;
+    transition: all 0.5s;
+    position: absolute;
+    left: 0;
+}
+
+.wrapper::before {
+    top: 0;
+    height: 100%;
+    background-image: linear-gradient(to top,
+            transparent 46%,
+            rgba(12, 13, 19, 0.5) 68%,
+            rgba(12, 13, 19) 97%);
+}
+
+.wrapper::after {
+    bottom: 0;
+    opacity: 1;
+    background-image: linear-gradient(to bottom,
+            transparent 46%,
+            rgba(12, 13, 19, 0.5) 68%,
+            rgba(12, 13, 19) 97%);
+}
+
+.card:hover .wrapper::before,
+.wrapper::after {
+    opacity: 1;
+}
+
+.card:hover .wrapper::after {
+    height: 120px;
+}
+
+.title {
+    width: 100%;
+    transition: transform 0.5s;
+}
+
+.card:hover .title {
+    transform: translate3d(0%, -50px, 100px);
+}
+
+.character {
+    width: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    position: absolute;
+    z-index: -1;
+}
+
+.card:hover .character {
+    opacity: 1;
+    transform: translate3d(0%, -30%, 100px);
+}
+
+.link {
+    color: #f9683c;
+
+    z-index: 1; /* Asegura que el texto esté por encima de la imagen */
+    font-size: 20px; /* Tamaño de fuente inicial */
+    transition: font-size 0.3s ease; /* Transición suave de tamaño de fuente */
+}
+
+

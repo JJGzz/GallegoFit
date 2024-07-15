@@ -199,6 +199,22 @@ body {
   }
 }
 
+@media(max-width: 960px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 2fr);
+  }
+
+  .card {
+    width: 90%;
+    height: auto;
+  }
+
+  .card h3{
+    font-size: 25px;
+
+  }
+}
+
 .card {
   list-style: none;
   position: relative;
