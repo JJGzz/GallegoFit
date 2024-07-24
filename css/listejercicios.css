@@ -298,3 +298,50 @@ nav {
 }
 
 
+
+
+
+
+
+
+
+
+/*Footer*/
+
+footer {
+	overflow: hidden;
+	background-color: #212529;
+	color: rgb(165, 165, 165);
+	width: 100%;
+	font-size: 12px;
+	display: flex;
+	justify-content: space-between;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	text-align: center;
+
+}
+
+.textofooter{
+
+	text-align: center;
+	display: flex;
+}
+
+footer a{
+	color: rgb(165, 165, 165);
+}
+
+footer a:hover {
+  transform: scale(1.1); /* Aumenta el tamaño del enlace al 110% del tamaño original */
+  transition: transform 0.2s; /* Agrega una transición suave para que el efecto sea gradual */
+}
+
+
+.redeslogo{
+	width: 40px;
+	height: auto;
+}
+
+

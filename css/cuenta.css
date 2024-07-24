@@ -1,0 +1,273 @@
+body {
+font-family: "Oswald", sans-serif;
+background-color: #F0653B;
+/*hace que el footer se pegue abajo del todo*/
+height: 100%;
+width: auto;
+}
+
+
+
+.rotated {
+transform:rotateY(360deg); /* Rotación de 360 grados */
+}
+
+/*Texto titulo*/
+
+.titulo {
+font-family: "Bebas Neue", sans-serif;
+}
+
+.titulo .naranja {
+color: #f97e3c;
+}
+
+.logo a {
+display: flex;
+/* Disposición en línea de los hijos directos */
+align-items: center;
+/* Alinea los elementos verticalmente */
+text-decoration: none;
+/* Quita el subrayado del enlace */
+color: inherit;
+/* Mantiene el color del texto */
+}
+
+.logo a:hover {
+transform: scale(1.1);
+/* Aumenta el tamaño del enlace al 110% del tamaño original */
+transition: transform 0.2s;
+/* Agrega una transición suave para que el efecto sea gradual */
+}
+
+.imglogo {
+width: 50px;
+height: auto;
+}
+
+
+
+/*Navbar*/
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+header {
+background: #333;
+color: #fff;
+padding: 10px 0;
+}
+
+nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 20px;
+}
+
+.logo h1 {
+margin: 0;
+}
+
+.menu-toggle {
+display: none;
+flex-direction: column;
+cursor: pointer;
+}
+
+.menu-toggle .bar {
+width: 25px;
+height: 3px;
+background-color: #fff;
+margin: 4px 0;
+}
+
+.nav-links {
+list-style: none;
+display: flex;
+}
+
+.nav-links li {
+margin: 0 15px;
+}
+
+.nav-links a {
+text-decoration: none;
+color: #fff;
+font-size: 16px;
+}
+
+
+.menu-toggle {
+display: flex;
+}
+
+.nav-links {
+z-index: 10; /*Hace que la hamburguesa se despliegue por encima de todo*/
+position: absolute;
+top: 60px;
+left: 0;
+width: 100%;
+background: #333;
+flex-direction: column;
+align-items: center;
+height: 0;
+overflow: hidden;
+transition: height 0.3s ease-in-out;
+}
+
+.nav-links li {
+margin: 20px 0;
+}
+
+.nav-links a {
+font-size: 24px;
+}
+
+.nav-links.active {
+height: calc(100vh - 60px);
+/* Dejar espacio para el header */
+}
+
+
+
+
+/*card*/
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+    object-fit: cover;
+}
+
+.profile-name {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.profile-info {
+    font-size: 16px;
+    color: #555;
+}
+
+.change-password {
+    margin-top: 20px;
+}
+
+.change-password label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.change-password input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.change-password button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.change-password button:hover {
+    background-color: #45a049;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*Footer*/
+
+.content {
+    height: 100%;
+    width: auto;
+}
+
+
+
+footer {
+    overflow: hidden;
+    background-color: #212529;
+    color: rgb(165, 165, 165);
+    width: 100%;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    text-align: center;
+}
+
+.textofooter{
+
+    text-align: center;
+    display: flex;
+}
+
+footer a{
+    color: rgb(165, 165, 165);
+}
+
+footer a:hover {
+transform: scale(1.1); /* Aumenta el tamaño del enlace al 110% del tamaño original */
+transition: transform 0.2s; /* Agrega una transición suave para que el efecto sea gradual */
+}
+
+
+.redeslogo{
+    width: 40px;
+    height: auto;
+}
+
+.content{
+    height: 100%;
+    width: auto;
+}
+
+

@@ -1,6 +1,9 @@
 body {
     font-family: "Oswald", sans-serif;
     align-items: center;
+    /*hace que el footer se pegue abajo del todo*/
+    height: 100%;
+    width: auto;
 }
 
 html {
@@ -131,34 +134,360 @@ nav {
 }
 
 
+/*Ingresar socios*/
+
+.togglenew{
+    padding-top: 30px;
+    text-align: center;
+}
+
+#botonToggle img {
+    transition: transform 0.3s ease; /* Transición suave para la rotación */
+}
+
+.togglehijo:hover{
+    transform: scale(1.05);
+    transition: transform 0.15s ease;
+}
+
+
+.padre {
+    display: none;
+    padding-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+.hijo {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #333333;
+    box-shadow: 15px 15px 7px;
+}
+
+.nombre {
+    display: flex;
+    justify-content: center;
+}
+
+.botonsubmit {
+    width: 40%;
+    background-color: #F0653B;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: "Oswald", sans-serif;
+}
+
+.botonsubmit:hover{
+    transform: scale(1.05);
+    transition: transform 0.15s ease;
+}
+
+@media(min-width: 960px) {
+    .padre {
+        padding-left: 400px;
+        padding-right: 400px;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+
+
+
+/*Buscar*/
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    width: 100%;
+}
+
+#searchButton {
+    padding: 10px;
+    background-color: #333;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.agrandarlupa:hover {
+    transform: scale(1.1);
+    transition: transform 0.15s ease;
+}
+
+
+
+
+
+/*Tabla*/
+
+
 .tabla {
     padding-top: 20px;
     border-collapse:collapse;
-    width: 80%;
+    width: 100%;
     justify-content: center;
-}
-
-.rows{
-    color: #ffff;
-    background-color: #333333;
-}
-
-.tabla .rows:hover{
-    background-color: #333333;
+    text-align: center;
+    align-items: center;
 }
 
 .center{
-    text-align: center;
     padding-top: 30px;
-    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
 }
 
+@media(min-width: 960px) {
+    .center{
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+}
+
+.rows{
+    color: black;
+    font-palette: white;
+    background-color: black;
+}
+
+
+.rows:hover{
+    transform: none;
+}
+
+.noagrandar{
+    color: white;
+}
+
+
+
 .tabla td {
-    border: 3px solid #333333;
+    border: 3px solid ;
     padding: 8px;
     text-align: center;
 }
 
-.tabla tr:hover {
-    background-color: #b39e9e; /* Color de fondo al pasar el cursor sobre la fila */
+.gris:hover {
+    background-color: rgba(255, 255, 255, 0.5);;
 }
+
+.agrandar:hover {
+    transform: scale(1.2);
+    transition: transform 0.15s ease;
+}
+
+.icono{
+    height: 25px;
+    width: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Edit*/
+
+.modal {
+    display: none;
+    position: fixed;
+    padding-top: 200px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-left: 300px;
+    padding-right: 300px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+    padding-right: 25px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.formm{
+    padding-top: 0px;
+}
+
+.padreedit{
+    padding-top: 30px;
+
+    background-color: #333;
+}
+
+.hijoedit {
+    padding-top: 0px;
+    padding-bottom: 20px;
+    background-color: #333333;
+}
+
+
+
+
+
+/*Eliminar socio*/
+
+.confirm-delete {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #333333;
+    box-shadow: 15px 15px 7px;
+    z-index: 1000;
+}
+
+.confirm-delete p{
+    color: white;
+}
+
+.confirm-delete button {
+    margin: 10px;
+}
+
+.botonesborrar{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.sisnon{
+    background-color: #F0653B;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+}
+
+.hoverrojo:hover{
+    transform: scale(1.1);
+    transition: transform 0.15s ease;
+    color: red;
+    cursor: pointer;
+}
+
+.hoverblanco:hover{
+    transform: scale(1.1);
+    transition: transform 0.15s ease;
+    cursor: pointer;
+}
+
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+
+
+
+
+/*Footer*/
+
+footer {
+    position: stickyv;
+	overflow: hidden;
+	background-color: #212529;
+	color: rgb(165, 165, 165);
+	width: 100%;
+	font-size: 12px;
+	display: flex;
+	justify-content: space-between;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	text-align: center;
+
+}
+
+.textofooter{
+	text-align: center;
+	display: flex;
+}
+
+footer a{
+	color: rgb(165, 165, 165);
+}
+
+footer a:hover {
+    transform: scale(1.1); /* Aumenta el tamaño del enlace al 110% del tamaño original */
+    transition: transform 0.2s; /* Agrega una transición suave para que el efecto sea gradual */
+}
+
+
+.redeslogo{
+	width: 30px;
+	height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,8 +4,16 @@ session_start();
 	include("connection.php");
 	include("functions.php");
 
-	$user_data = check_login($con);
+    
+    if (isset($_SESSION['user_id'])) {
+        // El usuario está logueado, usar el ID del usuario
+        $user_id = $_SESSION['user_id'];
+    } else {
+        // El usuario no está logueado, asignar valor predeterminado
+        $user_id = 0;
+    }
 
+    $allowed_ids = [1, 2, 3];
 ?>
 
 
@@ -46,7 +54,7 @@ session_start();
                 <div class="bar"></div>
             </div>
             <ul class="nav-links" id="nav-links">
-                <li><a href="login.php">Cuenta</a></li>
+                <li><a href="cuenta.php">Cuenta</a></li>
                 <li><a href="#clases">Rutinas</a></li>
                 <li><a href="#entrenadores">Entrenadores</a></li>
                 <li><a href="listsocios.php">Socios</a></li>
@@ -58,7 +66,6 @@ session_start();
 
     <!--Contenido pag-->
 
-    <H1>Bienvenido <?php echo $user_data['user_name']; ?></H1>
     <section class="hero-section">
         
         <div class="card-grid">
@@ -76,13 +83,15 @@ session_start();
                     <h3 class="card__heading">Rutinas</h3>
                 </div>
             </a>
+
             <a class="card" href="#">
                 <div class="card__background" style="background-image: url(img/entrenadores2.png)">
                 </div>
                 <div class="card__content">
                     <h3 class="card__heading">Entrenadores</h3>
                 </div>
-                </li>
+            </a>
+            <?php if (in_array($user_id, $allowed_ids)): ?>
                 <a class="card" href="listsocios.php">
                     <div class="card__background" style="background-image: url(img/socios.png)">
                     </div>
@@ -90,9 +99,29 @@ session_start();
                         <h3 class="card__heading">Socios</h3>
                     </div>
                 </a>
-                <div>
+            <?php endif; ?>
+            <div>
     </section>
 
+
+    <!--footer-->
+    <footer>
+        <div>
+            <!--hace que el copy quede al medio-->
+        </div>
+        <div class="textofooter">
+            <a href="https://www.instagram.com/juan.jose.garcia/" style="text-decoration: none" target="_blank">
+                <p>
+                    &copy; 2024 Juan José García, Argentina.
+                </p>
+            </a>
+        </div>
+        <a href="https://www.instagram.com/gimnasioelgallego/" target="_blank">
+            <div class="textofooter">
+                <img src="img/IG.png" alt="" class="redeslogo">
+            </div>
+        </a>
+    </footer>
 
     <!--Scripts-->
 

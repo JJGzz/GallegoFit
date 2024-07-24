@@ -16,7 +16,13 @@ session_start();
 	}
 
     
-
+    if (isset($_SESSION['user_id'])) {
+        // El usuario está logueado, usar el ID del usuario
+        $user_id = $_SESSION['user_id'];
+    } else {
+        // El usuario no está logueado, asignar valor predeterminado
+        $user_id = 0;
+    }
 ?>
 
 
@@ -24,7 +30,7 @@ session_start();
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="css/login.css">
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -130,6 +136,26 @@ session_start();
             </form>
         </div>
     </div>
+
+
+    <!--footer-->
+    <footer>
+        <div>
+            <!--hace que el copy quede al medio-->
+        </div>
+        <div class="textofooter">
+            <a href="https://www.instagram.com/juan.jose.garcia/" style="text-decoration: none" target="_blank">
+                <p>
+                    &copy; 2024 Juan José García, Argentina.
+                </p>
+            </a>
+        </div>
+        <a href="https://www.instagram.com/gimnasioelgallego/" target="_blank">
+            <div class="textofooter">
+                <img src="img/IG.png" alt="" class="redeslogo">
+            </div>
+        </a>
+    </footer>
 
 
 

@@ -1,0 +1,220 @@
+body {
+    font-family: "Oswald", sans-serif;
+    background-color: #F0653B;
+}
+
+/*Texto titulo*/
+
+.titulo {
+    font-family: "Bebas Neue", sans-serif;
+}
+
+.titulo .naranja {
+    color: #f97e3c;
+}
+
+.logo a {
+    display: flex;
+    /* Disposición en línea de los hijos directos */
+    align-items: center;
+    /* Alinea los elementos verticalmente */
+    text-decoration: none;
+    /* Quita el subrayado del enlace */
+    color: inherit;
+    /* Mantiene el color del texto */
+}
+
+.logo a:hover {
+    transform: scale(1.1);
+    /* Aumenta el tamaño del enlace al 110% del tamaño original */
+    transition: transform 0.2s;
+    /* Agrega una transición suave para que el efecto sea gradual */
+}
+
+.imglogo {
+    width: 50px;
+    height: auto;
+}
+
+.logo h1 {
+    font-size: 21px;
+}
+
+
+
+/*Navbar*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo h1 {
+    margin: 0;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 4px 0;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+
+.menu-toggle {
+    display: flex;
+}
+
+.nav-links {
+    z-index: 10;
+    /*Hace que la hamburguesa se despliegue por encima de todo*/
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #333;
+    flex-direction: column;
+    align-items: center;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+}
+
+.nav-links li {
+    margin: 20px 0;
+}
+
+.nav-links a {
+    font-size: 24px;
+}
+
+.nav-links.active {
+    height: calc(100vh - 60px);
+    /* Dejar espacio para el header */
+}
+
+
+
+
+/*Caja sign up*/
+
+.padre {
+    padding-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+.hijo {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #333333;
+    box-shadow: 15px 15px 7px;
+}
+
+.nombre {
+    display: flex;
+    justify-content: center;
+}
+
+.botonsubmit {
+    width: 40%;
+    background-color: #F0653B;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: "Oswald", sans-serif;
+}
+
+@media(min-width: 960px) {
+    .padre {
+        padding-left: 400px;
+        padding-right: 400px;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+
+
+
+
+
+
+/*Footer*/
+
+footer {
+	overflow: hidden;
+	background-color: #212529;
+	color: rgb(165, 165, 165);
+	width: 100%;
+	font-size: 12px;
+	display: flex;
+	justify-content: space-between;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	text-align: center;
+    position: fixed;
+    bottom: 0;
+
+}
+
+.textofooter{
+
+	text-align: center;
+	display: flex;
+}
+
+footer a{
+	color: rgb(165, 165, 165);
+}
+
+footer a:hover {
+  transform: scale(1.1); /* Aumenta el tamaño del enlace al 110% del tamaño original */
+  transition: transform 0.2s; /* Agrega una transición suave para que el efecto sea gradual */
+}
+
+
+.redeslogo{
+	width: 40px;
+	height: auto;
+}
