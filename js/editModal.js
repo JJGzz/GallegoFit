@@ -13,11 +13,13 @@ document.querySelectorAll('.edit-button').forEach(button => {
         var name = row.querySelector('.edit_socios_name').textContent;
         var surname = row.querySelector('.edit_socios_surname').textContent;
         var email = row.querySelector('.edit_email').textContent;
+        var datepago = row.querySelector('.edit_datepago').dataset.date;
 
         document.getElementById('edit_id').value = id;
         document.getElementById('edit_socios_name').value = name;
         document.getElementById('edit_socios_surname').value = surname;
         document.getElementById('edit_email').value = email;
+        document.getElementById('edit_datepago').value = datepago;
 
         modal.style.display = "block";
     });

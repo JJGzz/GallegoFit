@@ -2,6 +2,8 @@
 session_start();
 include("connection.php");
 
+//Cambia el estado e imagen del pago del socio
+
 if(isset($_POST['id']) && isset($_POST['status'])) {
     $id = $_POST['id'];
     $currentStatus = $_POST['status'];

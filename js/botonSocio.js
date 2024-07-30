@@ -1,4 +1,6 @@
-// botonSocio.js
+// Muestra el cuadro de agregar socio y rota la X a 45°
+
+
 function toggleCuadro() {
     var cuadro = document.querySelector('.padre');
     var boton = document.querySelector('#botonToggle img');

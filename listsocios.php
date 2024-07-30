@@ -53,7 +53,7 @@ session_start();
 
 			//save to database
 			$id = random_num(11);
-			$query = "insert into socios (id,socios_name,socios_surname,email,pago,datepago) values ('$id','$socios_name','$socios_surname','$email','0','$datepago')";
+			$query = "insert into socios (id,socios_name,socios_surname,email,pago,datepago) values ('$id','$socios_name','$socios_surname','$email','1','$datepago')";
 
 			mysqli_query($con, $query);
 
@@ -66,17 +66,20 @@ session_start();
 	}
 
 
+    //EDIT
+
     if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['edit_id']))
     {
         $edit_id = $_POST['edit_id'];
         $edit_socios_name = $_POST['edit_socios_name'];
         $edit_socios_surname = $_POST['edit_socios_surname'];
         $edit_email = $_POST['edit_email'];
+        $edit_datepago = $_POST['edit_datepago'];
 
-        if(!empty($edit_socios_name) && !empty($edit_socios_surname) && !is_numeric($edit_socios_name) && !is_numeric($edit_socios_surname))
+        if(!empty($edit_socios_name) && !empty($edit_socios_surname) && !is_numeric($edit_socios_name) && !is_numeric($edit_socios_surname) ) 
         {
             // Actualiza la base de datos
-            $query = "UPDATE socios SET socios_name='$edit_socios_name', socios_surname='$edit_socios_surname', email='$edit_email' WHERE id='$edit_id'";
+            $query = "UPDATE socios SET socios_name='$edit_socios_name', socios_surname='$edit_socios_surname', email='$edit_email', datepago='$edit_datepago' WHERE id='$edit_id'";
             mysqli_query($con, $query);
 
             header("Location: listsocios.php");
@@ -87,7 +90,21 @@ session_start();
         }
     }
 
-    
+
+
+
+    //Cambiar pago a 0 despues de 1 mes
+
+
+
+    // Obtener la fecha actual
+    $currentDate = date('d-m-Y');
+
+    // Actualizar la columna 'pago' a 0 si ha pasado más de un mes desde 'datepago'
+    $query = "UPDATE socios SET pago = 0 WHERE DATE_ADD(datepago, INTERVAL 1 MONTH) <= '$currentDate'";
+    mysqli_query($con, $query);
+
+
 ?>
 
 
@@ -111,6 +128,7 @@ session_start();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <title>Socios</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -131,7 +149,7 @@ session_start();
                 <li><a href="cuenta.php">Cuenta</a></li>
                 <li><a href="#clases">Rutinas</a></li>
                 <li><a href="#entrenadores">Entrenadores</a></li>
-                <li><a href="#contacto">Socios</a></li>
+                <li><a href="listsocios.html" style="color: #F0653B">Socios</a></li>
                 <li><a href="#contacto">Info</a></li>
                 <li><a href="logout.php">Cerrar sesion</a></li>
             </ul>
@@ -142,161 +160,182 @@ session_start();
 
     <!--Contenido pag-->
 
+    <main>
 
+        <!--Ingresar socio-->
 
-    <!--Ingresar socio-->
-
-    <br>
-    <div id="botonToggle" onclick="toggleCuadro()" style="text-align: center">
-        <div class="togglehijo">
-            <img src="img/simbolomas.png" alt="Toggle Button" style="width: 100px; height: 100px;">
+        <br>
+        <div id="botonToggle" class="notificaciones" style="text-align: center; display: flex; justify-content: space-between;">
+            <div  onclick="toggleCuadro()">
+                <img src="img/simbolomas.png" alt="Toggle Button" style="width: 100px; height: 100px;">
+            </div>
+            <div>
+                <img src="img/bell.png" style="width: 100px; height: 100px;">
+            </div>
         </div>
-    </div>
+
+        
 
 
 
-    <div class="padre">
-        <div class="hijo">
-            <H1 style="color: white;">Ingresar nuevo socio</H1>
-            <br>
-            <form method="post">
-                <div class="nombre input-group">
-                    <h2 style="color: white; padding-right: 10px;">Nombre:</h2>
-                    <br>
-                    <input id="text" type="text" name="socios_name" required>
-                </div>
+        <div class="padre">
+            <div class="hijo">
+                <H1 style="color: white;">Ingresar nuevo socio</H1>
                 <br>
-                <div class="nombre input-group">
-                    <h2 style="color: white; padding-right: 10px;">Apellido:</h2>
-                    <br>
-                    <input id="text" type="text" name="socios_surname" required>
-                </div>
-                <br>
-                <div class="nombre input-group">
-                    <h2 style="color: white; padding-right: 10px;">Email:</h2>
-                    <br>
-                    <input id="text" type="text" name="email">
-                </div>
-
-                <br>
-                <div class="nombre input-group">
-                    <h2 style="color: white; padding-right: 10px;">Fecha de pago:</h2>
-                    <br>
-                    <input id="text" type="date" name="datepago" required>
-                </div>
-
-                <br>
-                <div class="input-group cajasubmit">
-                    <input type="submit" class="botonsubmit" value="Agregar">
-                </div>
-            </form>
-        </div>
-    </div>
-
-
-
-    <!--Edit modal-->
-
-
-
-    <div id="editModal" class="modal">
-        <span class="close">&times;</span>
-        <div class="padreedit">
-            <form id="editForm" method="post" class="formm">
-                <input type="hidden" name="edit_id" id="edit_id">
-                <div class="hijoedit" style="text-align: center;">
+                <form method="post">
                     <div class="nombre input-group">
                         <h2 style="color: white; padding-right: 10px;">Nombre:</h2>
-                        <input id="edit_socios_name" type="text" name="edit_socios_name" required>
+                        <br>
+                        <input id="text" type="text" name="socios_name" required>
                     </div>
                     <br>
                     <div class="nombre input-group">
                         <h2 style="color: white; padding-right: 10px;">Apellido:</h2>
-                        <input id="edit_socios_surname" type="text" name="edit_socios_surname" required>
+                        <br>
+                        <input id="text" type="text" name="socios_surname" required>
                     </div>
                     <br>
                     <div class="nombre input-group">
                         <h2 style="color: white; padding-right: 10px;">Email:</h2>
-                        <input id="edit_email" type="text" name="edit_email">
+                        <br>
+                        <input id="text" type="text" name="email">
                     </div>
+
+                    <br>
+                    <div class="nombre input-group">
+                        <h2 style="color: white; padding-right: 10px;">Fecha de pago:</h2>
+                        <br>
+                        <input id="text" type="date" name="datepago" required>
+                    </div>
+
                     <br>
                     <div class="input-group cajasubmit">
-                        <input type="submit" class="botonsubmit" value="Guardar Cambios">
+                        <input type="submit" class="botonsubmit" value="Agregar">
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
 
 
 
-    <!-- Tablaaaa -->
-    
+        <!--Edit modal-->
 
 
-    <div class="center">
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar por nombre o apellido...">
-            <button id="searchButton" class="agrandarlupa">
-                <img src="img/lupa.png" alt="Buscar" class="search-icon">
-            </button>
+
+        <div id="editModal" class="modal">
+            <span class="close">&times;</span>
+            <div class="padreedit">
+                <form id="editForm" method="post" class="formm">
+                    <input type="hidden" name="edit_id" id="edit_id">
+                    <div class="hijoedit" style="text-align: center;">
+                        <div class="nombre input-group">
+                            <h2 style="color: white; padding-right: 10px;">Nombre:</h2>
+                            <input id="edit_socios_name" type="text" name="edit_socios_name" required>
+                        </div>
+                        <br>
+                        <div class="nombre input-group">
+                            <h2 style="color: white; padding-right: 10px;">Apellido:</h2>
+                            <input id="edit_socios_surname" type="text" name="edit_socios_surname" required>
+                        </div>
+                        <br>
+                        <div class="nombre input-group">
+                            <h2 style="color: white; padding-right: 10px;">Email:</h2>
+                            <input id="edit_email" type="text" name="edit_email">
+                        </div>
+                        <br>
+                        <div class="nombre input-group">
+                            <h2 style="color: white; padding-right: 10px;">Fecha:</h2>
+                            <input id="edit_datepago" type="date" name="edit_datepago">
+                        </div>
+                        <br>
+                        <div class="input-group cajasubmit">
+                            <input type="submit" class="botonsubmit" value="Guardar Cambios">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-    
-    <table class="tabla" id="sociosTable">
-            <tr class="rows">
-                <td><h4 style="color: white">Nombre</h4></td>
-                <td><h4 style="color: white">Apellido</h4></td>
-                <td><h4 style="color: white">Email</h4></td>
-                <td><h4 style="color: white">Pago</h4></td>
-                <td><h4 style="color: white">Edicion</h4></td>
-            </tr>
-            <?php while($row = mysqli_fetch_assoc($result)): ?>
-                <tr class="gris">
-                    <td><span class="edit_socios_name"><?php echo $row['socios_name']; ?></span></td>
-                    <td><span class="edit_socios_surname"><?php echo $row['socios_surname']; ?></span></td>
-                    <td><span class="edit_email"><?php echo $row['email']; ?></span></td>
-                    
-                    <td>
-                        <div class="agrandar">
-                        <img src="img/<?php echo $row['pago'] ? 'on' : 'off'; ?>.png" alt="<?php echo $row['pago'] ? 'On' : 'Off'; ?>" 
-                            class="toggle-pago" data-id="<?php echo $row['id']; ?>" data-status="<?php echo $row['pago']; ?>">
-                        </div>
-                    </td>
-                    
-                    <td>
-                        <div class="editar">
-                            <div class="agrandar">
-                                <input type="hidden" class="edit_id" value="<?php echo $row['id']; ?>">
-                                <img src="img/pen.png" alt="Editar" class="edit-button">
-                            </div>
-                            </div>
-                            <div class="agrandar">
-                                <img src="img/bin.png" alt="Borrar" class="delete-button">
-                            </div>
-                        </div>
-                    </td>
+
+
+
+        <!-- Overlay de pagos pendientes -->
+        <div id="combined-overlay" class="combined-overlay" style="display: none;"></div>
+
+        <script>
+            // Pasar la información de la sesión al script JavaScript
+            var newUnpaidMembers = <?php echo $_SESSION['new_unpaid_members'] ? 'true' : 'false'; ?>;
+        </script>
+
+
+        <!-- Tablaaaa -->
+        
+
+
+        <div class="center">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar por nombre o apellido...">
+                <button id="searchButton" class="agrandarlupa">
+                    <img src="img/lupa.png" alt="Buscar" class="search-icon">
+                </button>
+            </div>
+        
+        <table class="tabla" id="sociosTable">
+                <tr class="rows">
+                    <td><h4 style="color: white">Nombre</h4></td>
+                    <td><h4 style="color: white">Apellido</h4></td>
+                    <td><h4 style="color: white">Email</h4></td>
+                    <td class="mobilehide"><h4 style="color: white">Fecha de pago</h4></td>
+                    <td><h4 style="color: white">Pago</h4></td>
+                    <td><h4 style="color: white">Edicion</h4></td>
                 </tr>
-            <?php endwhile; ?>
+                <?php while($row = mysqli_fetch_assoc($result)): ?>
+                    <tr class="gris">
+                        <td><span class="edit_socios_name"><?php echo $row['socios_name']; ?></span></td>
+                        <td><span class="edit_socios_surname"><?php echo $row['socios_surname']; ?></span></td>
+                        <td><span class="edit_email"><?php echo $row['email']; ?></span></td>
+                        <td class="mobilehide"><span class="edit_datepago" data-date="<?php echo $row['datepago']; ?>"><?php echo date('d-m-Y', strtotime($row['datepago'])); ?></span></td>
+                        
+                        <td>
+                            <div class="agrandar">
+                                <img src="img/<?php echo $row['pago'] ? 'on' : 'off'; ?>.png" alt="<?php echo $row['pago'] ? 'On' : 'Off'; ?>" 
+                                class="toggle-pago" data-id="<?php echo $row['id']; ?>" data-status="<?php echo $row['pago']; ?>">
+                            </div>
+                        </td>
+                        
+                        <td>
+                            <div class="editar">
+                                <div class="agrandar">
+                                    <input type="hidden" class="edit_id" value="<?php echo $row['id']; ?>">
+                                    <img src="img/pen.png" alt="Editar" class="edit-button">
+                                </div>
+                                </div>
+                                <div class="agrandar">
+                                    <img src="img/bin.png" alt="Borrar" class="delete-button">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
 
-        </table>
-    </div>
-
-
-
-    <!--eliminar-->
-
-
-    <div class="overlay" id="overlay"></div>
-    <div class="confirm-delete" id="confirm-delete">
-        <p>¿Estás seguro de que deseas eliminar este socio?</p>
-        <br>
-        <div class="botonesborrar">
-            <div class="sisnon hoverrojo" id="confirm-yes">Sí</div>
-            <div class="sisnon hoverblanco" id="confirm-no">No</div>
+            </table>
         </div>
-    </div>
 
 
+
+        <!--eliminar-->
+
+
+        <div class="overlay" id="overlay"></div>
+        <div class="confirm-delete" id="confirm-delete">
+            <p>¿Estás seguro de que deseas eliminar este socio?</p>
+            <br>
+            <div class="botonesborrar">
+                <div class="sisnon hoverrojo" id="confirm-yes">Sí</div>
+                <div class="sisnon hoverblanco" id="confirm-no">No</div>
+            </div>
+        </div>
+
+    </main>
 
 
     <!--footer-->
@@ -329,6 +368,7 @@ session_start();
     <script src="js/deleteRow.js"></script>
     <script src="js/searchTable.js"></script>
     <script src="js/botonSocio.js"></script>
+    <script src="js/campana.js"></script>
 </body>
 
 </html>

@@ -197,6 +197,119 @@ nav {
 
 
 
+/*notificaciones*/
+.notificaciones{
+    padding-left:300px;
+    padding-right: 300px;
+}
+
+@media(max-width: 960px) {
+    .notificaciones{
+        padding-left:30px;
+        padding-right: 30px;
+    }
+}
+
+
+@keyframes shakeBell {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-15deg); }
+    50% { transform: rotate(15deg); }
+    75% { transform: rotate(-15deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.shake {
+    animation: shakeBell 0.6s;
+}
+
+
+#botonToggle {
+    position: relative;
+}
+
+.combined-overlay {
+    position: absolute;
+    top: 120px; /* Ajusta esta posición según sea necesario */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    width: 600px; /* Ajusta el ancho según sea necesario */
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.combined-overlay-content {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    max-height: 300px; /* Altura máxima del overlay */
+    overflow: hidden;
+}
+
+.combined-overlay-content .overlay-section {
+    width: 45%;
+    max-height: 280px; /* Altura máxima de cada sección */
+    overflow-y: auto; /* Habilitar barra de desplazamiento vertical */
+}
+
+.combined-overlay-content h2 {
+    margin-bottom: 10px;
+}
+
+.combined-overlay-content ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.combined-overlay-content ul li {
+    margin-bottom: 5px;
+}
+
+.close-overlay {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Personalizar la barra de desplazamiento */
+.combined-overlay-content .overlay-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.combined-overlay-content .overlay-section::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.combined-overlay-content .overlay-section::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.combined-overlay-content .overlay-section::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+
+
+@media(max-width: 960px) {
+    .combined-overlay {
+        width:90%
+    }
+}
+
+
+
+
+
 
 /*Buscar*/
 
@@ -238,6 +351,12 @@ nav {
 
 
 /*Tabla*/
+
+@media(max-width: 960px) {
+    .mobilehide{
+        display: none;
+    }
+}
 
 
 .tabla {
@@ -299,9 +418,6 @@ nav {
     height: 25px;
     width: 25px;
 }
-
-
-
 
 
 
@@ -401,6 +517,13 @@ nav {
     padding-right: 80px;
 }
 
+@media(max-width: 960px) {
+    .botonesborrar{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
 .sisnon{
     background-color: #F0653B;
     padding-left: 20px;
@@ -473,6 +596,42 @@ footer a:hover {
 .redeslogo{
 	width: 30px;
 	height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*Asegura que el footer se pegue abajo del todo*/
+
+/* Asegurarse de que el html y body ocupen el 100% de la altura */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Hacer que el main contenedor ocupe todo el espacio disponible */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Opcional: centrar el contenido verticalmente */
+}
+
+/* Estilo para el footer para asegurarse que está al fondo */
+footer {
+    text-align: center;
+    padding: 1em;
+    background-color: #333;
+    color: white;
+    position: relative;
+    width: 100%;
 }
 
 

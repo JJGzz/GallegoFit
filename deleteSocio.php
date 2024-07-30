@@ -1,6 +1,8 @@
 <?php
 include("connection.php");
 
+//listsocios.php borrar socios
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
 

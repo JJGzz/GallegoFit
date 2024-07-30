@@ -1,24 +1,29 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const togglePagoElements = document.querySelectorAll('.toggle-pago');
+// togglePago.js
+$(document).ready(function() {
+    $('.toggle-pago').on('click', function() {
+        var img = $(this);
+        var id = img.data('id');
+        var currentStatus = img.data('status');
 
-    togglePagoElements.forEach(element => {
-        element.addEventListener('click', function() {
-            const socioId = this.getAttribute('data-id');
-            const currentStatus = this.getAttribute('data-status');
+        $.ajax({
+            url: 'update_pago.php',
+            type: 'POST',
+            data: {
+                id: id,
+                currentStatus: currentStatus
+            },
+            success: function(response) {
+                var result = JSON.parse(response);
+                var newStatus = result.newStatus;
 
-            // Realizar la solicitud AJAX para actualizar el estado
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'togglePago.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = function() {
-                if (this.status === 200) {
-                    // Actualizar la imagen y el estado
-                    const newStatus = this.responseText;
-                    element.setAttribute('data-status', newStatus);
-                    element.setAttribute('src', 'img/' + (newStatus === '1' ? 'on' : 'off') + '.png');
-                }
-            };
-            xhr.send('id=' + socioId + '&status=' + currentStatus);
+                // Actualizar el src y alt de la imagen
+                img.attr('src', 'img/' + (newStatus ? 'on' : 'off') + '.png');
+                img.attr('alt', newStatus ? 'On' : 'Off');
+                img.data('status', newStatus);
+            },
+            error: function() {
+                alert('Error al actualizar el estado de pago.');
+            }
         });
     });
 });
