@@ -3,9 +3,7 @@ body {
     font-family: "Oswald", sans-serif;
 }
 
-html {
-    background: linear-gradient(to bottom right, #f9683c, #292c2f);
-}
+
 
 /*Texto titulo*/
 
@@ -133,7 +131,7 @@ nav {
 
 .cuadrolist {
     text-align: center;
-    padding-bottom: 700px;
+    padding-bottom: 200px;
     display: flex;
     flex-wrap: wrap;
     background-color: #f9683c;
@@ -152,7 +150,6 @@ nav {
     text-decoration: none;
     color: #f9683c;
     background-color: #333333;
-    
 }
 
 @media(max-width: 960px) {
@@ -183,7 +180,7 @@ nav {
 
 :root {
     --card-height: 300px;
-    --card-width: calc(var(--card-height) / 1.5);
+    --card-width: calc(var(--card-height) / 1);
 }
 
 @media(max-width: 1080px) {
@@ -205,8 +202,27 @@ nav {
     justify-content: center;
     align-items: flex-end;
     padding: 0 36px;
+    padding-bottom: 35px;
     perspective: 2500px;
-    margin: 0 50px;
+    margin: 0 25px;
+}
+
+
+@media(max-width: 960px) {
+    .card{
+        margin: 0 0px;
+    }
+
+    .cardPadre{
+        justify-content: center;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    :root {
+        --card-height: 180px;
+        --card-width: calc(var(--card-height) / 1);
+    }
 }
 
 .cover-image {
@@ -223,7 +239,7 @@ nav {
 }
 
 .card:hover .wrapper {
-    transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+    transform: perspective(900px) translateY(-5%) rotateX(10deg) translateZ(0);
     box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
@@ -258,44 +274,128 @@ nav {
             rgba(12, 13, 19) 97%);
 }
 
-.card:hover .wrapper::before,
-.wrapper::after {
-    opacity: 1;
-}
 
-.card:hover .wrapper::after {
-    height: 120px;
-}
 
-.title {
-    width: 100%;
-    transition: transform 0.5s;
-}
 
-.card:hover .title {
-    transform: translate3d(0%, -50px, 100px);
-}
-
-.character {
-    width: 100%;
-    opacity: 0;
-    transition: all 0.5s;
-    position: absolute;
-    z-index: -1;
-}
-
-.card:hover .character {
-    opacity: 1;
-    transform: translate3d(0%, -30%, 100px);
-}
 
 .link {
-    color: #f9683c;
+    color: #333333;
+    font-weight: bold;
+            text-shadow: 
+                1px 1px 0 #f9683c,   /* sombra inferior derecha */
+                -1px -1px 0 #f9683c, /* sombra superior izquierda */
+                1px -1px 0 #f9683c,  /* sombra superior derecha */
+                -1px 1px 0 #f9683c;  /* sombra inferior izquierda */
 
     z-index: 1; /* Asegura que el texto esté por encima de la imagen */
     font-size: 20px; /* Tamaño de fuente inicial */
     transition: font-size 0.3s ease; /* Transición suave de tamaño de fuente */
 }
+
+
+
+
+
+/* Agregar ejercicio */
+
+.agregarpadre{
+    background-color: #f9683c;
+    padding-top:40px;
+    padding-right:300px;
+    padding-left:300px;
+    padding-bottom:20px;
+}
+
+@media(max-width: 960px) {
+    .agregarpadre{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+
+.agregar{
+    background-color: #333333;
+    border-radius: 7px;
+    box-shadow: 15px 15px 7px;
+}
+
+.agregar:hover{
+    transform: scale(1.04);
+    transition: transform 0.4s;
+    cursor:pointer;
+}
+
+.btnAgregar{
+    text-align: center;
+    color: #ffff;
+}
+
+
+
+/* Overlay agregar */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90%;
+}
+
+@media(max-width: 960px) {
+    .overlay-content{
+        width:360px;
+        max-width: 95%;
+    }
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+input[type="text"],
+textarea,
+select,
+input[type="url"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    font-family: "Oswald", sans-serif;
+    background-color: #ff6600;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background-color: #e65c00;
+}
+
 
 
 
@@ -324,9 +424,7 @@ footer {
 }
 
 .textofooter{
-
 	text-align: center;
-	display: flex;
 }
 
 footer a{
@@ -338,10 +436,99 @@ footer a:hover {
   transition: transform 0.2s; /* Agrega una transición suave para que el efecto sea gradual */
 }
 
+a p:hover{
+    transform: scale(1.1); /* Aumenta el tamaño del enlace al 110% del tamaño original */
+  transition: transform 0.2s; /* Agrega una transición suave para que el efecto sea gradual */
+}
+
 
 .redeslogo{
 	width: 40px;
 	height: auto;
 }
+
+
+
+
+
+
+/*Asegura que el footer se pegue abajo del todo*/
+
+/* Asegurarse de que el html y body ocupen el 100% de la altura */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Hacer que el main contenedor ocupe todo el espacio disponible */
+main {
+    background-color: #f9683c;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Opcional: centrar el contenido verticalmente */
+}
+
+/* Estilo para el footer para asegurarse que está al fondo */
+footer {
+    text-align: center;
+
+    background-color: #333;
+    color: white;
+    position: relative;
+    width: 100%;
+}
+
+
+
+
+
+
+/*Descripcion ejercicio*/
+
+.infopadre{
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 20px;
+}
+
+.infohijo{
+    background-color: #333333;
+    padding-bottom: 30px;
+}
+
+.video-container{
+    text-align: center;
+}
+
+.video-container iframe, .video-container video {
+    border: 5px solid #534b4b; /* Borde blanco */
+    border-radius: 8px; /* Opcional: redondear bordes */
+    box-shadow: 15px 15px #f9683c; /* Opcional: añadir sombra */
+}
+
+.textodesc{
+    background-color: #534b4b;
+    border-radius: 10px;
+    border-color:#e65c00;
+    border-style: solid;
+}
+
+.editarborrar{
+    display: flex;
+    justify-content: space-between;
+    background-color: #534b4b;
+}
+
+.icono{
+    height: 30px;
+    width: 30px;
+}
+
+.icono:hover{
+    transform:scale(1.1)
+}
+
 
 

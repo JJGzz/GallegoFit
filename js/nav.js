@@ -8,3 +8,21 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
+//overlay agregar ejercicio
+
+document.getElementById("agregarEjercicioBtn").onclick = function() {
+    document.getElementById("overlay").style.display = "flex";
+}
+
+document.getElementById("closeOverlay").onclick = function() {
+    document.getElementById("overlay").style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById("overlay")) {
+        document.getElementById("overlay").style.display = "none";
+    }
+}
+
+

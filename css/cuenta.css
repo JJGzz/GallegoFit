@@ -170,9 +170,22 @@ body {
 }
 
 .profile-name {
+    font-family: "Oswald", sans-serif;
     margin: 0;
     font-size: 24px;
     color: #333;
+}
+
+.profile-name-input{
+    font-size: 20px;
+    font-family: "Oswald", sans-serif;
+    font-weight: bold;
+    color: #333333;
+}
+
+.nombre{
+    display: flex;
+    justify-content: center;
 }
 
 .profile-info {
@@ -180,37 +193,234 @@ body {
     color: #555;
 }
 
+.guardarname{
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.guardarname button{
+    font-family: "Oswald", sans-serif;
+}
+
+.guardarname button:hover{
+    transform: scale(1.05);
+    transition: transform 0.15s ease;
+}
+
+
+
+
+
+
+/*Hace que la foto de perfil se ponga borrosa*/
+
+
+
+
+
+
+.profile-picture {
+    transition: filter 0.3s ease;
+}
+
+.profile-picture:hover {
+    filter: blur(4px);
+}
+
+
+.profile-header:hover .edit-icon {
+    opacity: 1;
+}
+
+
+
+
+
+
+/*edit foto*/
+
+.edit-form-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+.edit-form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.profile-header {
+    position: relative;
+}
+.edit-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.custom-file-input {
+    display: none;
+}
+
+
+
+.custom-file-label {
+    display: inline-block;
+    text-align: center;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: white;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.botonfoto{
+    color: white;
+    background-color: #F0653B;
+    padding-left: 10px;
+    padding-right:10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.botonfoto:hover{
+    transform: scale(1.05);
+    transition: transform 0.15s ease;
+    cursor: pointer;
+}
+
+.subir{
+    text-align: center;
+}
+
+label{
+    background-color: #333333;
+}
+
+label:hover{
+    transform: scale(1.05);
+    transition: transform 0.15s ease;
+}
+
+
+
+
+
+
+
+
+
+/*Contraseña*/
+
+.change-password {
+    display: inline-block; /* Para que se comporte como un botón */
+    padding: 5px 20px; /* Añade espacio interno al botón */
+    background-color: white; /* Color de fondo blanco */
+    border: 2px solid gray; /* Borde gris */
+    color: #555; /* Color del texto */
+    text-align: center; /* Centrar el texto */
+    text-decoration: none; /* Quitar subrayado */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+    border-radius: 5px; /* Bordes redondeados (opcional) */
+    font-family: "Oswald", sans-serif;
+}
+
+.change-password:hover{
+    transform: scale(1.05);
+    transition: transform 0.15s ease;
+    border: 2px solid black;
+    color: black;
+}
+
 .change-password {
     margin-top: 20px;
 }
 
-.change-password label {
+
+
+/*overlay contraseña*/
+
+
+.change-password-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.change-password-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
     display: block;
     margin-bottom: 5px;
 }
 
-.change-password input {
-    width: calc(100% - 22px);
+.form-group input {
+    width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.change-password button {
-    padding: 10px 15px;
-    border: none;
-    background-color: #4CAF50;
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.form-buttons .botonfoto {
+    padding: 10px 20px;
+    background-color: #F0653B;
     color: white;
-    border-radius: 4px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-family: "Oswald", sans-serif;
 }
 
-.change-password button:hover {
-    background-color: #45a049;
+.form-buttons .botonfoto:hover {
+    background-color: #d9542e;
 }
 
+.message {
+    background-color: #F0653B;
+    color: white;
+    padding: 10px;
+    margin: 20px 0;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+}
 
+.nohover:hover{
+    transform: none;
+}
 
 
 
@@ -270,4 +480,65 @@ transition: transform 0.2s; /* Agrega una transición suave para que el efecto s
     width: auto;
 }
 
+
+
+
+
+
+
+.profile-container {
+    text-align: center;
+    margin-top: 50px;
+    justify-content: center;
+}
+.profile-header {
+    position: relative;
+    display: inline-block;
+}
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    transition: filter 0.3s;
+}
+.edit-icon {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.profile-header:hover .profile-picture {
+    filter: blur(5px);
+}
+.profile-header:hover .edit-icon {
+    opacity: 1;
+}
+
+
+
+/*Asegura que el footer se pegue abajo del todo*/
+
+/* Asegurarse de que el html y body ocupen el 100% de la altura */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+
+/* Estilo para el footer para asegurarse que está al fondo */
+footer {
+    text-align: center;
+    padding: 1em;
+    background-color: #333;
+    color: white;
+    position: relative;
+    width: 100%;
+}
 

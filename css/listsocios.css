@@ -199,6 +199,7 @@ nav {
 
 /*notificaciones*/
 .notificaciones{
+    padding-top: 30px;
     padding-left:300px;
     padding-right: 300px;
 }
@@ -368,6 +369,12 @@ nav {
     align-items: center;
 }
 
+@media(max-width: 960px) {
+    .tabla{
+        width: 90%;
+    }
+}
+
 .center{
     padding-top: 30px;
     padding-left: 10px;
@@ -378,7 +385,7 @@ nav {
 @media(min-width: 960px) {
     .center{
         padding-left: 35px;
-        padding-right: 35px;
+        padding-right: 40px;
     }
 }
 
@@ -386,6 +393,7 @@ nav {
     color: black;
     font-palette: white;
     background-color: black;
+    padding-right: 10px;
 }
 
 
@@ -445,6 +453,15 @@ nav {
     padding-right: 300px;
 }
 
+@media(max-width: 960px) {
+    .modal{
+        justify-content: center;
+        width: 100%;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
 .modal-content {
     background-color: #fefefe;
     margin: 5% auto;
@@ -474,16 +491,19 @@ nav {
 
 .padreedit{
     padding-top: 30px;
-
+    padding-bottom: 20px;
     background-color: #333;
 }
 
-.hijoedit {
-    padding-top: 0px;
-    padding-bottom: 20px;
-    background-color: #333333;
-}
 
+
+@media(max-width: 960px) {
+    .padreedit{
+        padding-bottom: 15px;
+        padding-left: 15px;
+    }
+    
+}
 
 
 
@@ -563,7 +583,7 @@ nav {
 /*Footer*/
 
 footer {
-    position: stickyv;
+    position: sticky;
 	overflow: hidden;
 	background-color: #212529;
 	color: rgb(165, 165, 165);

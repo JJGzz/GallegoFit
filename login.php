@@ -109,14 +109,16 @@ session_start();
                             {
             
                                 $user_data = mysqli_fetch_assoc($result);
-                                
-                                if($user_data['password'] === $password)
-                                {
-            
+                                //el hash cambia la encriptacion de la base de datos a string
+                                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+                                //verifica que la contraseña tipeada sea igual que a la traduccion del hash
+                                if (password_verify($password, $hashed_password)) {
                                     $_SESSION['user_id'] = $user_data['user_id'];
                                     header("Location: index.php");
                                     die;
                                 }
+                            
                             }
                         }
                         

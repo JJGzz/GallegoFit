@@ -338,8 +338,23 @@ session_start();
     </main>
 
 
-    <!--footer-->
-    <footer>
+    
+    
+    <!--Scripts-->
+
+
+
+
+    <script src="js/nav.js"></script>
+    <script src="js/togglePago.js"></script>
+    <script src="js/editModal.js"></script>
+    <script src="js/deleteRow.js"></script>
+    <script src="js/searchTable.js"></script>
+    <script src="js/botonSocio.js"></script>
+    <script src="js/campana.js"></script>
+</body>
+<!--footer-->
+<footer>
         <div>
             <!--hace que el copy quede al medio-->
         </div>
@@ -355,20 +370,6 @@ session_start();
                 <img src="img/IG.png" alt="" class="redeslogo">
             </div>
         </a>
-    </footer>
-    
-    <!--Scripts-->
-
-
-
-
-    <script src="js/nav.js"></script>
-    <script src="js/togglePago.js"></script>
-    <script src="js/editModal.js"></script>
-    <script src="js/deleteRow.js"></script>
-    <script src="js/searchTable.js"></script>
-    <script src="js/botonSocio.js"></script>
-    <script src="js/campana.js"></script>
-</body>
+</footer>
 
 </html>

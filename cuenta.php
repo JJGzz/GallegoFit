@@ -14,6 +14,20 @@ session_start();
     }
 
     $user_data = check_login($con);
+
+
+
+    //Cambio de contraseña
+
+    // Mostrar mensaje de la sesión si existe
+    if (isset($_SESSION['message'])) {
+        echo "<div class='message'>" . $_SESSION['message'] . "</div>";
+        // Borrar el mensaje de la sesión
+        unset($_SESSION['message']);
+    }
+
+
+
 ?>
 
 
@@ -37,6 +51,10 @@ session_start();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!--Cropper-->
+    <link href="https://unpkg.com/cropperjs/dist/cropper.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/cropperjs"></script>
     <title>Inicio</title>
 </head>
 
@@ -56,7 +74,7 @@ session_start();
                     <div class="bar"></div>
                 </div>
                 <ul class="nav-links" id="nav-links">
-                    <li><a href="cuenta.php">Cuenta</a></li>
+                    <li><a href="cuenta.php" style="color: #F0653B">Cuenta</a></li>
                     <li><a href="#clases">Rutinas</a></li>
                     <li><a href="#entrenadores">Entrenadores</a></li>
                     <li><a href="listsocios.php">Socios</a></li>
@@ -67,40 +85,102 @@ session_start();
         </header>
 
         <!--Contenido pag-->
+        <main>
 
-
-        <div class="profile-container">
-            <div class="profile-header">
-                <img src="img/sillycat.jpg" alt="Foto de Perfil" class="profile-picture">
-                <h1 class="profile-name"><?php echo $user_data['user_name']; ?></h1>
-            </div>
-            <div class="profile-info">
-
-                <p><strong>Email: </strong><?php echo $user_data['user_email']; ?></p>
-                <div class="change-password">
-                    Cambiar contraseña
+            <div class="profile-container">
+                <div class="profile-header">
+                    <?php if($user_data['img']) { ?>
+                        <img src="data:image/jpeg;base64,<?php echo base64_encode($user_data['img']); ?>" alt="Foto de Perfil" class="profile-picture"/>
+                    <?php } else { ?>
+                        <img src="img/default_profile.png" alt="Foto de Perfil" class="profile-picture"/>
+                    <?php } ?>
+                    <img src="img/pen.png" alt="Editar" class="edit-icon" onclick="toggleEditForm()">
+                </div>
+                <div style="display:flex; align-items: center;" class="nombre">
+                    <h1 class="profile-name" id="profile-name"><?php echo $user_data['user_name']; ?></h1>
+                    <input type="text" id="name-input" class="profile-name-input" value="<?php echo $user_data['user_name']; ?>" style="display: none;">
+                    <img src="img/pen.png" alt="Editar" style="width:22px; height:35px; cursor: pointer;" onclick="enableNameEdit()">
+                </div>
+                <div class="guardarname">
+                    <button id="save-name-button" style="display: none; background-color: #F0653B; padding: 8px 15px" onclick="saveName()">Guardar</button>
+                </div>
+                <div class="profile-info">
+                    <p><strong>Email: </strong><?php echo $user_data['user_email']; ?></p>
+                    <div class="change-password">
+                        Cambiar contraseña
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        
+
+                <!-- Overlay cambiar contraseña -->
+
+            <div class="change-password-overlay" id="change-password-overlay">
+                <div class="change-password-container">
+                    <form action="change_password.php" method="post">
+                        <h2>Cambiar Contraseña</h2>
+                        <div class="form-group">
+                            <label for="new-password" class="nohover" style="color: white">Nueva Contraseña</label>
+                            <input type="password" id="new-password" name="new_password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password" class="nohover" style="color: white">Confirmar Nueva Contraseña</label>
+                            <input type="password" id="confirm-password" name="confirm_password" required>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="botonfoto">Guardar</button>
+                            <button type="button" onclick="toggleChangePasswordForm()" class="botonfoto">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            
+
+            <!-- Overlay cambiar foto -->
+            <div class="edit-form-overlay" id="edit-form-overlay">
+                <div class="edit-form-container">
+                    <form id="crop-form" action="upload.php" method="post" enctype="multipart/form-data">
+                        <br>
+                        <div class="green" id="green">
+                            <input type="file" name="img" id="img" class="custom-file-input">
+                            <label for="img" class="custom-file-label">Selecciona una nueva imagen</label>
+                        </div>
+                        <br>
+                        <!-- Contenedor para mostrar la imagen recortada -->
+                        <div class="img-container">
+                            <img id="image-preview" style="max-width: 30%;">
+                        </div>
+                        <br>
+                        <div class="subir">
+                            <input type="hidden" id="cropped-img" name="cropped_img">
+                            <input type="submit" value="Guardar" name="submit" class="botonfoto">
+                            <button type="button" onclick="toggleEditForm()" class="botonfoto">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </main>   
 
 
 
         <!--footer-->
-        <footer>
+        
+
+        <!--Scripts-->
+
+
+
+        <script src="js/nav.js"></script>
+        <script src="js/editFoto.js"></script>
+        <script src="js/editName.js"></script>
+    </div>
+</body>
+
+<footer>
             <div>
                 <!--hace que el copy quede al medio-->
             </div>
@@ -116,12 +196,6 @@ session_start();
                     <img src="img/IG.png" alt="" class="redeslogo">
                 </div>
             </a>
-        </footer>
-
-        <!--Scripts-->
-
-        <script src="js/nav.js"></script>
-    </div>
-</body>
+</footer>
 
 </html>
